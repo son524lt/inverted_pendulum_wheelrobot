@@ -1,18 +1,24 @@
-#include <Arduino.h>
+#include <main.h>
+MPU6050 dynamicIMU(0x68);
+MPU6050 staticIMU(0x69);
 
-// put function declarations here:
-int myFunction(int, int);
+IMUData dynamicData(&dynamicIMU), staticData(&staticIMU);
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+void setup(){
+    Wire.begin();
+    Serial.begin(9600);
+    dynamicIMU.initialize(); // Initialize dynamicIMU
+    staticIMU.initialize(); // Initialize staticIMU
+}
+void loop(){
+    //update data
+    dynamicData.updateData();
+    staticData.updateData();
+    // print data
+    Serial.print("Dynamic IMU: ");
+    dynamicData.printData();
+    Serial.print(" | Static IMU: ");
+    staticData.printData();
+    Serial.println();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
