@@ -1,2 +1,2 @@
 # inverted_pendulum_wheelrobot
-inverted pendulum wheel-robot, code for STM32F4
+inverted pendulum wheel-robot, working with ESP32 and 2 IMUs MPU6050
